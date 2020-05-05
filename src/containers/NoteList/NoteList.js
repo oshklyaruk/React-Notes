@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { deleteNote, addNote } from '../actions/noteList'
+import { deleteNote, addNote } from '../../actions/noteList'
 import './NoteList.sass';
-import Note from '../components/Note/Note'
-import Button from '../components/Button/Button'
-import NoteCreator from '../components/NoteCreator/NoteCreator'
+import Note from '../../components/Note/Note'
+import Button from '../../components/Button/Button'
+import NoteCreator from '../../components/NoteCreator/NoteCreator'
 
 class NoteList extends React.Component {
   constructor(props) {
