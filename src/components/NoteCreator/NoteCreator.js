@@ -21,8 +21,9 @@ class NoteCreator extends React.Component {
       this.setState({
         error: true
       })
+
+      return;
     }
-    return;
 
     let newNote = {
       title,
@@ -56,12 +57,12 @@ class NoteCreator extends React.Component {
         <h3>Create new note</h3>
         <Input placeholder="Title" value={title} onChange={this.handleTitleChange}/>
         <textarea placeholder="Description" value={description} onChange={this.handleDescriptionChange}/>
-        <Button onClick={this.handleCreateNote}>Create</Button>
         {
           error
             ? <span className="error">Title should not be empty</span>
             : null
         }
+        <Button onClick={this.handleCreateNote}>Create</Button>
       </div>
     )
   }

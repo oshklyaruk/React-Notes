@@ -17,12 +17,8 @@ function App() {
           <Route exact path="/" render={() => (
             <Redirect to="/signin"/>
           )}/>
-          <Route path="/signin">
-            <SignIn/>
-          </Route>
-          <Route path="/list">
-            <NoteList/>
-          </Route>
+          <Route path="/signin" component={SignIn}/>
+          <Route path="/list" component={NoteList}/>
         </Switch>
       </Router>
     </div>

@@ -39,11 +39,13 @@ class NoteList extends React.Component {
     return (
       <div className="note-list">
         <h1>To Do list</h1>
+        <div className="note-list-form">
         {
           !showCreateNoteForm
             ? <Button onClick={this.handleShowCreateNoteForm}>Create new note</Button>
             : <NoteCreator createNote={this.handleCreateNote}/>
         }
+        </div>
         {
           noteList.map(note => (
             <Note key={note.id} note={note} onDeleteNote={this.handleDeleteNote}/>

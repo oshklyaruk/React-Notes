@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Note.sass';
 import Button from '../Button/Button';
 
@@ -13,6 +14,11 @@ const Note = ({ note, onDeleteNote }) => {
         <Button style={{ backgroundColor: "#de5151"}} onClick={() => onDeleteNote(id)}>Delete note</Button>
       </div>
   )
+}
+
+Note.propTypes = {
+  note: PropTypes.object.isRequired,
+  onDeleteNote: PropTypes.func.isRequired
 }
 
 export default Note;
