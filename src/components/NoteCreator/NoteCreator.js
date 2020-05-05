@@ -10,11 +10,19 @@ class NoteCreator extends React.Component {
     this.state = {
       title: "",
       description: "",
+      error: false
     }
   }
 
   handleCreateNote = () => {
     let {title, description} = this.state;
+
+    if (title.trim().length === 0) {
+      this.setState({
+        error: true
+      })
+    }
+    return;
 
     let newNote = {
       title,
@@ -42,14 +50,19 @@ class NoteCreator extends React.Component {
   }
 
   render() {
-    const {title, description} = this.state;
+    const {title, description, error} = this.state;
     return (
-        <div className="note-creator">
-          <h3>Create new note</h3>
-          <Input placeholder="Title" value={title} onChange={this.handleTitleChange}/>
-          <textarea placeholder="Description" value={description} onChange={this.handleDescriptionChange}/>
-          <Button onClick={this.handleCreateNote}>Create</Button>
-        </div>
+      <div className="note-creator">
+        <h3>Create new note</h3>
+        <Input placeholder="Title" value={title} onChange={this.handleTitleChange}/>
+        <textarea placeholder="Description" value={description} onChange={this.handleDescriptionChange}/>
+        <Button onClick={this.handleCreateNote}>Create</Button>
+        {
+          error
+            ? <span className="error">Title should not be empty</span>
+            : null
+        }
+      </div>
     )
   }
 }

@@ -1,38 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { deleteNote, addNote } from '../actions/noteList'
 import './NoteList.sass';
 import Note from '../components/Note/Note'
 import Button from '../components/Button/Button'
 import NoteCreator from '../components/NoteCreator/NoteCreator'
-
-let list = [
-  {
-    id: 1,
-    title: "Buy food",
-    description: "Apples, bananas, oranges",
-    date: new Date()
-  },
-  {
-    id: 2,
-    title: "Meeting",
-    description: "Arrange the meeting",
-    date: new Date()
-  },
-  {
-    id: 3,
-    title: "Make a call",
-    description: "Call Tom",
-    date: new Date()
-  },
-
-]
 
 class NoteList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showCreateNoteForm: false,
-      noteList: list
+      showCreateNoteForm: false
     }
   }
 
@@ -43,15 +22,20 @@ class NoteList extends React.Component {
   };
 
   handleCreateNote = (note) => {
-    console.log(note);
+    this.props.addNote(note);
+    this.setState({
+      showCreateNoteForm: false
+    })
   };
 
   handleDeleteNote = (id) => {
-    console.log(id);
+    this.props.deleteNote(id);
   };
 
   render() {
-    const {showCreateNoteForm, noteList} = this.state;
+    const {showCreateNoteForm} = this.state;
+    const {noteList} = this.props;
+
     return (
       <div className="note-list">
         <h1>To Do list</h1>
@@ -70,4 +54,13 @@ class NoteList extends React.Component {
   }
 }
 
-export default NoteList;
+const mapStateToProps = state => ({
+  noteList: state.noteList.noteList
+})
+
+const mapDispatchToProps = dispatch => ({
+  deleteNote: id => dispatch(deleteNote(id)),
+  addNote: note => dispatch(addNote(note)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteList)
